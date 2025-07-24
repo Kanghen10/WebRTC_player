@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WebRTC Player</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      height: 100%;
+      overflow: hidden;
+    }
+    iframe {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      background: black;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    const url = decodeURIComponent(window.location.hash.substring(1));
+
+    if (url && url.startsWith("http")) {
+      // Render iframe fullscreen tanpa control dan auto-play
+      document.write(`<iframe src="${url}" allow="autoplay; fullscreen; camera; microphone"></iframe>`);
+    } else {
+      document.body.innerHTML = `
+        <h2 style="color:white;text-align:center;margin-top:30px;">
+          Harap masukkan URL WebRTC di bagian hash (#)...<br>
+          <small style="color:gray;">
+            Contoh: <code>#https://cctv.nusantarainfrastructure.com/stream/singleplayer/Cambaya</code>
+          </small>
+        </h2>`;
+    }
+  </script>
+</body>
+</html>
